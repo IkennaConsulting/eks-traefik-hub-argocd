@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    test: app
+    external-dns.alpha.kubernetes.io/hostname: "apicurio.ikenna.dev"
+    cert-manager.io/issuer: "ikenna-http"
+  name: apicurio
+  namespace: apicurio-registry-operator-namespace
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - apicurio.ikenna.dev
+      secretName: ikenna-dev
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: ikenna-apicurioregistry-sql-service
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix
+
+          - backend:
+              service:
+                name: ikenna-apicurioregistry-sql-service
+                port:
+                  number: 8080
+            path: /apis/registry/v2/
+            pathType: Prefix

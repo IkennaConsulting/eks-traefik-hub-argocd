@@ -1,0 +1,13 @@
+apiVersion: registry.apicur.io/v1
+kind: ApicurioRegistry
+metadata:
+  name: ikenna-apicurioregistry-sql
+  namespace: apicurio-registry-operator-namespace
+spec:
+  configuration:
+    persistence: "sql"
+    sql:
+      dataSource:
+        url: "jdbc:postgresql://ikenna-apicurio-cluster-rw.apicurio-registry-operator-namespace.svc:5432/apicurio"
+        userName: "postgres"
+        password: "uN3i1Hh0bYbCc4TyVAacBhmSzgqtzqxmOVjAn0QIChsJrSmu9PY2fw2q8EKKLpZ9"
